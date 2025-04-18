@@ -1,4 +1,8 @@
-const API_URL =process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
+if (!API_URL) {
+  throw new Error('Missing REACT_APP_API_URL environment variable');
+}
+
 export const processImage = async (imageFile, onProgress) => {
   // Create form data
   const formData = new FormData();

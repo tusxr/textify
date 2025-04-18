@@ -29,7 +29,10 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
 }));
-
+app.use((req, res, next) => {
+  console.log('Incoming request:', req.method, req.url);
+  next();
+});
 // ✅ Handle preflight requests properly
 app.options('*', cors());
 app.use(express.json());

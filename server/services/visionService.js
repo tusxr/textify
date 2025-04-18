@@ -1,13 +1,38 @@
-// server/services/visionService.js
+
+// // server/services/visionService.js
+// const vision = require('@google-cloud/vision');
+// const fs = require('fs');
+// const path = require('path');
+// const dotenv = require('dotenv');
+// dotenv.config()
+// // Create a client
+
+
+// const credentials = JSON.parse(
+//   Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, 'base64').toString('utf8')
+// );
+
+// initializeApp({
+//   credential: cert(credentials),
+// });
+
+
+// // const client = new vision.ImageAnnotatorClient({
+// //   keyFilename: path.join(__dirname, '../config/google-vision-credentials.json')
+// // });
+
+// const client = new vision.ImageAnnotatorClient({credentials});
 const vision = require('@google-cloud/vision');
-const fs = require('fs');
-const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 
-// Create a client
-const client = new vision.ImageAnnotatorClient({
-  keyFilename: path.join(__dirname, '../config/google-vision-credentials.json')
-});
+// Decode base64-encoded JSON credentials from env
+const credentials = JSON.parse(
+  Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, 'base64').toString('utf8')
+);
 
+// Create a client using the decoded credentials
+const client = new vision.ImageAnnotatorClient({ credentials });
 /**
  * Extract text from an image using Google Cloud Vision API
  * @param {string} filePath - Path to the image file

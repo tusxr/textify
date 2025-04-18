@@ -16,18 +16,14 @@ const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
-const allowedOrigins = ['https://textify-tusxr.vercel.app/'];
+const allowedOrigins = ['https://textify-tusxr.vercel.app'];
 // Middleware
 app.use(helmet()); // Security headers
 app.use(cors({
-  origin: function (origin, callback) {
-    // allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    return callback(new Error('Not allowed by CORS'));
-  },
+  origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 app.use((req, res, next) => {
   console.log('Incoming request:', req.method, req.url);

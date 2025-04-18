@@ -1,4 +1,4 @@
-const REACT_APP_API_URL= process.env.REACT_APP_API_URL;
+const REACT_APP_API_URL= import.meta.env.VITE_API_URL;
 if (!REACT_APP_API_URL) {
   throw new Error('Missing REACT_APP_API_URL environment variable');
 }

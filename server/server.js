@@ -19,13 +19,11 @@ if (!fs.existsSync(uploadsDir)) {
 const allowedOrigins = ['https://textify-tusxr.vercel.app/'];
 // Middleware
 app.use(helmet()); // Security headers
-app.use(
-  cors({
-    origin: allowedOrigins, // Allow all origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
+app.use(cors({
+  origin: 'https://textify-tusxr.vercel.app', // or ['http://localhost:3000', 'your-vercel-url']
+  credentials: true,
+}));
+app.options('*', cors());
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));

@@ -16,10 +16,16 @@ const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
-
+const allowedOrigins = ['https://textify-tusxr.vercel.app/'];
 // Middleware
 app.use(helmet()); // Security headers
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins, // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  })
+);
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));

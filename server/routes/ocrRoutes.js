@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const ocrController = require('../controllers/ocrController.js');
-const upload = require('../middleware/uploadMiddleware');
+const upload = require('../middleware/uploadMiddleware.js');
 
 // Route to process an image for OCR
 router.post('/process', upload.single('image'), ocrController.processImage);

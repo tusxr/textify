@@ -1,4 +1,4 @@
-const API_URL = process.env.REACT_APP_API_URL;
+const REACT_APP_API_URL= process.env.REACT_APP_API_URL;
 if (!API_URL) {
   throw new Error('Missing REACT_APP_API_URL environment variable');
 }
@@ -14,7 +14,7 @@ export const processImage = async (imageFile, onProgress) => {
       return await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         
-        xhr.open('POST', `${API_URL}/ocr/process`);
+        xhr.open('POST', `${REACT_APP_API_URL}/ocr/process`);
         
         xhr.upload.onprogress = (event) => {
           if (event.lengthComputable) {
@@ -36,7 +36,7 @@ export const processImage = async (imageFile, onProgress) => {
       });
     } else {
       // Regular fetch without progress tracking
-      const response = await fetch(`${API_URL}/ocr/process`, {
+      const response = await fetch(`${REACT_APP_API_URL}/ocr/process`, {
         method: 'POST',
         body: formData,
       });

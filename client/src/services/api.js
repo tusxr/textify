@@ -1,4 +1,4 @@
-const API_URL =textify-production.up.railway.app;
+const API_URL =process.env.REACT_APP_API_URL;
 export const processImage = async (imageFile, onProgress) => {
   // Create form data
   const formData = new FormData();

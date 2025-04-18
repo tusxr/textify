@@ -1,26 +1,6 @@
 
-// // server/services/visionService.js
-// const vision = require('@google-cloud/vision');
 const fs = require('fs');
 const path = require('path');
-const dotenv = require('dotenv');
-// dotenv.config()
-// // Create a client
-
-
-// const credentials = JSON.parse(
-//   Buffer.from(process.env.GOOGLE_APPLICATION_CREDENTIALS, 'base64').toString('utf8')
-// );
-
-// initializeApp({
-//   credential: cert(credentials),
-// });
-
-
-// // const client = new vision.ImageAnnotatorClient({
-// //   keyFilename: path.join(__dirname, '../config/google-vision-credentials.json')
-// // });
-
 // const client = new vision.ImageAnnotatorClient({credentials});
 const vision = require('@google-cloud/vision');
 const dotenv = require('dotenv');

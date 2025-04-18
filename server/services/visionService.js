@@ -1,9 +1,9 @@
 
 // // server/services/visionService.js
 // const vision = require('@google-cloud/vision');
-// const fs = require('fs');
-// const path = require('path');
-// const dotenv = require('dotenv');
+const fs = require('fs');
+const path = require('path');
+const dotenv = require('dotenv');
 // dotenv.config()
 // // Create a client
 

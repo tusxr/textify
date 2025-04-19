@@ -31,7 +31,7 @@ const corsOptions = {
   },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-  credentials: false,
+  credentials: true,
   maxAge: 86400
 };
 

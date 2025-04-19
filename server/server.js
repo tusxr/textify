@@ -37,7 +37,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // handle preflight requests
-
+console.log("Updated CORS config")
 app.use(helmet()); // Security
 app.use(morgan('dev'));
 app.use(express.json());

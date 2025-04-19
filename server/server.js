@@ -41,12 +41,19 @@ if (!fs.existsSync(uploadsDir)) {
 //   credentials: true,
 //   maxAge: 86400 // 24 hours for preflight cache
 // };
+
+const allowedOrigins = ['https://textify-tusxr.vercel.app'];
 app.use(cors());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-  });
+app.use(cors({
+  origin: function(origin, callback){
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // if you're using cookies or auth headers
+}));
 // Middleware ordering is CRUCIAL
 app.use(helmet());
 app.use(morgan('dev'));

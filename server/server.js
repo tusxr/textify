@@ -17,7 +17,7 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // ✅ Allowed frontend domains
-const allowedOrigins = ['https://textify-tusxr.vercel.app/'];
+const allowedOrigins = ['https://textify-tusxr.vercel.app'];
 
 // ✅ CORS middleware
 const corsOptions = {
@@ -35,9 +35,8 @@ const corsOptions = {
   maxAge: 86400
 };
 
-// ✅ Middleware ordering matters
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Preflight
+app.options('*', cors(corsOptions)); // handle preflight requests
 
 app.use(helmet()); // Security
 app.use(morgan('dev'));

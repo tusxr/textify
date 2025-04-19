@@ -17,7 +17,7 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // ✅ Allowed frontend domains
-const allowedOrigins = ['https://textify-tusxr.vercel.app'];
+const allowedOrigins = ['https://textify-tusxr.vercel.app/'];
 
 // ✅ CORS middleware
 const corsOptions = {

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
+var cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
 const fs = require('fs');
@@ -16,32 +16,37 @@ if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
 }
 
-const allowedOrigins = [
-  'https://textify-tusxr.vercel.app',
-  'https://textify-tusxr.vercel.app/' // Include both variants
-];
+// const allowedOrigins = [
+//   'https://textify-tusxr.vercel.app',
+//   'https://textify-tusxr.vercel.app/' // Include both variants
+// ];
 
-// Configure CORS with more specific settings
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.log('Blocked CORS for origin:', origin);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'Accept',
-    'X-Requested-With'
-  ],
-  credentials: true,
-  maxAge: 86400 // 24 hours for preflight cache
-};
-
+// // Configure CORS with more specific settings
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       console.log('Blocked CORS for origin:', origin);
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: ['GET', 'POST', 'OPTIONS'],
+//   allowedHeaders: [
+//     'Content-Type',
+//     'Authorization',
+//     'Accept',
+//     'X-Requested-With'
+//   ],
+//   credentials: true,
+//   maxAge: 86400 // 24 hours for preflight cache
+// };
+app.use(cors());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+  });
 // Middleware ordering is CRUCIAL
 app.use(helmet());
 app.use(morgan('dev'));

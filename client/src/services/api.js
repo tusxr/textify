@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL;
 export const processImage = async (imageFile, onProgress) => {
   // Create form data
   const formData = new FormData();
